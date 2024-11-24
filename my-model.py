@@ -1,16 +1,16 @@
+# Python Libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
 
-# data = pd.read_csv("House_Rent_Dataset.csv")
+# Data Set
 data = pd.read_csv("nyc_apts.csv")
 
+# Data Preparation
 print(data.head())
-
 print(data.isnull().sum())
-
 print(data.describe())
 
 print(f"Mean Rent: {data.Rent.mean()}")
@@ -18,6 +18,7 @@ print(f"Median Rent: {data.Rent.median()}")
 print(f"Highest Rent: {data.Rent.max()}")
 print(f"Lowest Rent: {data.Rent.min()}")
 
+# Visualization
 figure = px.bar(data, x=data["Borough"], 
                 y = data["Rent"], 
                 color = data["Rooms"],
@@ -42,6 +43,7 @@ fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='black', width=3)))
 fig.show()
 
+# Converting categorical into numerical features
 data["Area Type"] = data["Area Type"].map({"Super Area": 1, 
                                            "Carpet Area": 2, 
                                            "Built Area": 3})
@@ -52,9 +54,8 @@ data["Furnishing Status"] = data["Furnishing Status"].map({"Unfurnished": 0,
 data["Tenant Preferred"] = data["Tenant Preferred"].map({"Bachelors/Family": 2, 
                                                          "Bachelors": 1, 
                                                          "Family": 3})
-print(data.head())
 
-#splitting data
+# Splitting data and test sets
 from sklearn.model_selection import train_test_split
 
 x = np.array(data[["Rooms", "Size", "Area Type", "Borough", 
@@ -68,9 +69,13 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y,
 xtrain = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
 xtest = xtest.reshape((xtest.shape[0], xtest.shape[1], 1))
 
+# Neural Network
+
 from keras.models import Sequential # type: ignore
 from keras.layers import Input, Dense, LSTM # type: ignore
 from keras.optimizers import Adam # type: ignore
+
+# Model Config
 
 model = Sequential()
 model.add(Input(shape=(xtrain.shape[1], xtrain.shape[2])))
@@ -80,6 +85,8 @@ model.add(Dense(25, activation='relu'))
 model.add(Dense(1))
 
 model.summary()
+
+# Model Compile
 
 model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
 model.fit(xtrain, ytrain, batch_size=32, epochs=21)
