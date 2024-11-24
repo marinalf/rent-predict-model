@@ -1,0 +1,21 @@
+Borough,Rooms,Size,Rent,Floor,Furnishing Status,Tenant Preferred,Area Type
+Queens,1,600,2500,2,Unfurnished,Bachelors/Family,Super Area
+Brooklyn,1,700,2600,3,Unfurnished,Bachelors/Family,Super Area
+Manhattan,1,700,2500,4,Unfurnished,Bachelors/Family,Super Area
+Manhattan,1,600,2400,2,Unfurnished,Bachelors/Family,Super Area
+Manhattan,2,1100,3100,8,Furnished,Bachelors/Family,Carpet Area
+Manhattan,2,900,2800,4,Unfurnished,Barchelors,Carpet Area
+Queens,1,900,2850,2,Furnished,Bachelors/Family,Carpet Area
+Manhattan,2,1000,3000,2,Unfurnished,Bachelors/Family,Carpet Area
+Queens,1,700,2500,2,Furnished,Bachelors/Family,Super Area
+Brooklyn,1,700,2600,1,Unfurnished,Barchelors,Super Area
+Queens,1,1500,4100,4,Unfurnished,Family,Super Area
+Brooklyn,2,600,2200,4,Furnished,Barchelors,Super Area
+Manhattan,2,1200,4500,2,Furnished,Bachelors/Family,Carpet Area
+Manhattan,3,1200,3200,3,Furnished,Barchelors,Carpet Area
+Manhattan,2,1500,4200,5,Furnished,Barchelors,Carpet Area
+Manhattan,3,1100,3300,4,Unfurnished,Bachelors/Family,Carpet Area
+Queens,3,2000,8900,4,Furnished,Bachelors/Family,Built Area
+Manhattan,3,1500,3500,3,Unfurnished,Bachelors/Family,Built Area
+Queens,2,900,2950,1,Unfurnished,Family,Built Area
+Brooklyn,2,1000,3900,2,Furnished,Bachelors/Family,Built Area
