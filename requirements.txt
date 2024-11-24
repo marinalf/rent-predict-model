@@ -1,0 +1,15 @@
+Libraries
+
+pandas
+numpy
+matplotlib
+plotly
+scikit-learn
+tensorflow
+
+Virtual Environmnent
+
+cd path/to/your/project
+python3 -m venv my_env 
+source my_env/bin/activate
+deactivate
