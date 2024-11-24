@@ -70,13 +70,11 @@ xtrain = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
 xtest = xtest.reshape((xtest.shape[0], xtest.shape[1], 1))
 
 # Neural Network
-
 from keras.models import Sequential # type: ignore
 from keras.layers import Input, Dense, LSTM # type: ignore
 from keras.optimizers import Adam # type: ignore
 
 # Model Config
-
 model = Sequential()
 model.add(Input(shape=(xtrain.shape[1], xtrain.shape[2])))
 model.add(LSTM(128, return_sequences=True))
@@ -87,7 +85,6 @@ model.add(Dense(1))
 model.summary()
 
 # Model Compile
-
 model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
 model.fit(xtrain, ytrain, batch_size=32, epochs=21)
 
