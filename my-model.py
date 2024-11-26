@@ -65,15 +65,19 @@ from keras.optimizers import Adam # type: ignore
 
 # Model Config
 model = Sequential() # A Sequential model is a linear stack of layers
-model.add(Dense(19,activation='relu')) # input layer
-model.add(Dense(19,activation='relu')) # hidden layer
-model.add(Dense(19,activation='relu')) # hidden layer
-model.add(Dense(19,activation='relu')) # hidden layer
+
+# Add Layers
+model.add(Dense(4,activation='relu')) # input layer
+model.add(Dense(16,activation='relu')) # hidden layer
+model.add(Dense(16,activation='relu')) # hidden layer
+model.add(Dense(8,activation='relu')) # hidden layer
 model.add(Dense(1)) # output layer
 
-# Model Compile
+# Compile the Model
 model.compile(optimizer='Adam', loss='mse')
 model.fit(xtrain, ytrain, validation_data=(xtest,ytest), batch_size=128, epochs=400)
+
+# Summary of the Model
 model.summary()
 
 # Save the model
