@@ -64,12 +64,12 @@ from keras.layers import Dense # type: ignore
 from keras.optimizers import Adam # type: ignore
 
 # Model Config
-model = Sequential()
-model.add(Dense(19,activation='relu'))
-model.add(Dense(19,activation='relu'))
-model.add(Dense(19,activation='relu'))
-model.add(Dense(19,activation='relu'))
-model.add(Dense(1))
+model = Sequential() # A Sequential model is a linear stack of layers
+model.add(Dense(19,activation='relu')) # input layer
+model.add(Dense(19,activation='relu')) # hidden layer
+model.add(Dense(19,activation='relu')) # hidden layer
+model.add(Dense(19,activation='relu')) # hidden layer
+model.add(Dense(1)) # output layer
 
 # Model Compile
 model.compile(optimizer='Adam', loss='mse')
