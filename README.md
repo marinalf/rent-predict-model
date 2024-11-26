@@ -1,6 +1,6 @@
 # ML Model for Rental Price Prediction
 
-This is a basic ML model to predict prices of rentals in NYC, used for learning purposes only. It is based on python and trained with a LSTM neural network. 
+This is a basic ML model to predict prices of rentals in NYC, used for learning purposes only, and trained with a neural network. 
 
 ## Dataset
 
