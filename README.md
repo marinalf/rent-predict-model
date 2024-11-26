@@ -11,8 +11,8 @@ The dataset can be found in nyc_apts.csv file. This is a manual dataset not asso
 - size/sq ft (number)
 - floor (number)
 - furnishing status (categorical)
-- Tenant Preferred (optional)
-- Area Type (optional)
+- tenant Preferred (optional)
+- area Type (optional)
 - price (to be predicted)
 
 ## Requirements
