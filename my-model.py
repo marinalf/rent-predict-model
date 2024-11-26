@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 # Data Set
 data = pd.read_csv("nyc_apts.csv")
 
+"""
 # Data Preparation
 print(data.head())
 print(data.isnull().sum())
@@ -31,7 +32,6 @@ figure = px.bar(data, x=data["Borough"],
             title="Rent in different boroughs according to size")
 figure.show()
 
-
 cities = data["Borough"].value_counts()
 label = cities.index
 counts = cities.values
@@ -43,12 +43,13 @@ fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='black', width=3)))
 fig.show()
 
-# Converting categorical into numerical features
+"""
+# Converting categorical into numerical features (Label Encoding)
 data["Area Type"] = data["Area Type"].map({"Super Area": 1, 
                                            "Carpet Area": 2, 
                                            "Built Area": 3})
-data["Borough"] = data["Borough"].map({"Queens": 4000, "Brooklyn": 6000, 
-                                 "Manhattan": 5600})
+data["Borough"] = data["Borough"].map({"Queens": 4000, "Brooklyn": 5000, 
+                                 "Manhattan": 6000})
 data["Furnishing Status"] = data["Furnishing Status"].map({"Unfurnished": 0,  
                                                            "Furnished": 1})
 data["Tenant Preferred"] = data["Tenant Preferred"].map({"Bachelors/Family": 2, 
@@ -58,35 +59,30 @@ data["Tenant Preferred"] = data["Tenant Preferred"].map({"Bachelors/Family": 2,
 # Splitting data and test sets
 from sklearn.model_selection import train_test_split
 
-x = np.array(data[["Rooms", "Size", "Area Type", "Borough", 
-                   "Furnishing Status", "Tenant Preferred"]])
+x = np.array(data[["Rooms", "Size", "Borough", "Furnishing Status"]])
 y = np.array(data[["Rent"]])
 
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, 
                                                 test_size=0.10, 
                                                 random_state=42)
 
-xtrain = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
-xtest = xtest.reshape((xtest.shape[0], xtest.shape[1], 1))
-
 # Neural Network
 from keras.models import Sequential # type: ignore
-from keras.layers import Input, Dense, LSTM # type: ignore
+from keras.layers import Dense # type: ignore
 from keras.optimizers import Adam # type: ignore
 
 # Model Config
 model = Sequential()
-model.add(Input(shape=(xtrain.shape[1], xtrain.shape[2])))
-model.add(LSTM(128, return_sequences=True))
-model.add(LSTM(64, return_sequences=False))
-model.add(Dense(25, activation='relu'))
+model.add(Dense(19,activation='relu'))
+model.add(Dense(19,activation='relu'))
+model.add(Dense(19,activation='relu'))
+model.add(Dense(19,activation='relu'))
 model.add(Dense(1))
 
-model.summary()
-
 # Model Compile
-model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
-model.fit(xtrain, ytrain, batch_size=32, epochs=21)
+model.compile(optimizer='Adam', loss='mse')
+model.fit(xtrain, ytrain, validation_data=(xtest,ytest), batch_size=128, epochs=400)
+model.summary()
 
 # Save the model
 model.save('my_model.keras')  # Saves the model in the current directory
